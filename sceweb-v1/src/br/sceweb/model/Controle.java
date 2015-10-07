@@ -16,6 +16,7 @@ public class Controle {
 			empresa.setCnpj(cnpj);
 			empresa.setNomeDaEmpresa(nomeDaEmpresa);
 			empresa.setNomeFantasia(nomeFantasia);
+			empresa.setEndereco(endereco);
 			empresa.setTelefone(telefone);
 			empresaDAO.adiciona(empresa);
 			msg = "cadastro realizado com sucesso";
