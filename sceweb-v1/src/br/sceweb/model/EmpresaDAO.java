@@ -2,10 +2,17 @@ package br.sceweb.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmpresaDAO {
-
+    /*
+     * inclui uma empresa no db
+     * entrada objeto do tipo empresa
+     * saida - o numero de linhas afetadas com a operacao
+     */
 	public int adiciona(Empresa empresa) {
 		PreparedStatement ps;
 		int codigoRetorno = 0;
@@ -25,7 +32,11 @@ public class EmpresaDAO {
 		}
 		return codigoRetorno;
 	}
-
+	/*
+     * exclui uma empresa no db
+     * entrada string contendo o cnpj
+     * saida - o numero de linhas afetadas com a operacao
+     */
 	public int exclui(String cnpj) {
 		PreparedStatement ps;
 		int codigoRetorno = 0;
@@ -39,5 +50,28 @@ public class EmpresaDAO {
 		return codigoRetorno;
 
 	}
-
+	/*
+     * consulta todas as empresas
+     * entrada n/a
+     * saida - um arraylist com todas as empresas listadas no db
+     */
+	public List<Empresa> consultaEmpresas() {
+		List<Empresa> empresas = new ArrayList<Empresa>();
+		PreparedStatement ps;
+		try (Connection conn = new FabricaDeConexoes().getConnection()) {
+			ps = conn.prepareStatement("select * from empresa");
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				Empresa empresa = new Empresa();
+				empresa.setNomeDaEmpresa(resultSet.getString("nomeDaEmpresa"));
+				//os outros atributos nao foram implementados
+				empresas.add(empresa);
+			}
+			resultSet.close();
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return empresas;
+	}
 }
