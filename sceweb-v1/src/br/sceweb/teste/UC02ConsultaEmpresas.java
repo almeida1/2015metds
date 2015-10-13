@@ -24,7 +24,7 @@ public class UC02ConsultaEmpresas {
 		empresa.setEndereco("rua taquari");
 		empresa.setTelefone("2222");
 	}
-	/*
+	/**
 	 * obj - verificar o comportamento do sistema na consulta de todas as empresas 
 	 */
 	@Test

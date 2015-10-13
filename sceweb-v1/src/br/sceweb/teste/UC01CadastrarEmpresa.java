@@ -24,7 +24,7 @@ public class UC01CadastrarEmpresa {
 		empresa.setEndereco("rua taquari");
 		empresa.setTelefone("2222");
 	}
-	/*
+	/**
 	 * obj - verificar o comportamento do sistema na inclusão de uma empresa com sucesso
 	 */
 	@Test
@@ -33,7 +33,8 @@ public class UC01CadastrarEmpresa {
 		assertEquals(1,empresaDAO.adiciona(empresa));
 		empresaDAO.exclui("89424232000180");
 	}
-	/*
+	/**
+	 * CT02UC01A1Cadastra_cnpj_ja_cadastrado
 	 * obj - verificar o comportamento do sistema na inclusão de um cnpj ja cadastrado
 	 */
 	@Test(expected = RuntimeException.class)
@@ -41,7 +42,7 @@ public class UC01CadastrarEmpresa {
 		empresaDAO.adiciona(empresa);
 		assertEquals(0,empresaDAO.adiciona(empresa));
 	}
-	/*
+	/**
 	 * obj - verificar o comportamento do sistema na consulta de todas as empresas 
 	 */
 	@Test(expected = RuntimeException.class)
