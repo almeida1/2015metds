@@ -28,27 +28,31 @@ public class UC01CadastrarEmpresa {
 	 * obj - verificar o comportamento do sistema na inclusão de uma empresa com sucesso
 	 */
 	@Test
-	public void CT01UC01FBCadastra_com_sucesso() {
+	public void CT01UC01FBCadastra_empresa_com_sucesso() {
 		empresaDAO.exclui("89424232000180");
 		assertEquals(1,empresaDAO.adiciona(empresa));
 		empresaDAO.exclui("89424232000180");
 	}
 	/**
-	 * CT02UC01A1Cadastra_cnpj_ja_cadastrado
-	 * obj - verificar o comportamento do sistema na inclusão de um cnpj ja cadastrado
+	 * obj - verificar o comportamento do sistema no cadastro com cnpj ja cadastrado
 	 */
 	@Test(expected = RuntimeException.class)
-	public void CT02UC01A1Cadastra_cnpj_ja_cadastrado() {
+	public void CT02UC01A2Cadastra_empresa_cnpj_ja_cadastrado() {
 		empresaDAO.adiciona(empresa);
 		assertEquals(0,empresaDAO.adiciona(empresa));
 	}
 	/**
-	 * obj - verificar o comportamento do sistema na consulta de todas as empresas 
+	 * obj - verificar o comportamento do sistema no cadastro com cnpj invalido
 	 */
-	@Test(expected = RuntimeException.class)
-	public void CT03UC01A1Cadastra_cnpj_ja_cadastrado() {
-		empresaDAO.adiciona(empresa);
-		assertEquals(0,empresaDAO.adiciona(empresa));
+	@Test
+	public void CT03UC01A3Cadastra_empresa_cnpj_invalido() {
+		Empresa empresa2 = new Empresa();
+		try {
+			empresa2.setCnpj("8942423200018");
+			fail("deveria disparar uma exception");
+		} catch (Exception e) {
+			assertEquals("CNPJ inválido!",e.getMessage());
+		}
 	}
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {

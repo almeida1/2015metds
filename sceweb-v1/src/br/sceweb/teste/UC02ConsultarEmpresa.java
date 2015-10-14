@@ -9,7 +9,7 @@ import org.junit.Test;
 import br.sceweb.model.Empresa;
 import br.sceweb.model.EmpresaDAO;
 
-public class UC02ConsultaEmpresas {
+public class UC02ConsultarEmpresa {
 
 	static EmpresaDAO empresaDAO;
     static Empresa empresa;
@@ -28,7 +28,7 @@ public class UC02ConsultaEmpresas {
 	 * obj - verificar o comportamento do sistema na consulta de todas as empresas 
 	 */
 	@Test
-	public void CT01UC02FBCosultaEmpresa() {
+	public void CT01UC02FBCosultarEmpresa_com_sucesso() {
 		empresaDAO.adiciona(empresa);
 		assertEquals(1,empresaDAO.consultaEmpresas().size());
 		empresaDAO.exclui("89424232000180");

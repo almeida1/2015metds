@@ -18,7 +18,7 @@ public class Empresa {
 	/*
 	 * atribui o cnpj vefica se o cnpj é valido
 	 */
-	public void setCnpj(String cnpj) throws Exception {
+	public void setCnpj(String cnpj)  {
 		if (isValido(cnpj)){
 			this.cnpj = cnpj;
 		}
@@ -83,9 +83,6 @@ public class Empresa {
 			erro.printStackTrace();
 	        return(false);
 	    }
-		
-
-		
 	}
 	public String getNomeDaEmpresa() {
 		return nomeDaEmpresa;
