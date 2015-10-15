@@ -13,6 +13,10 @@ import br.sceweb.model.EmpresaDAO;
 public class UC01CadastrarEmpresa {
     static EmpresaDAO empresaDAO;
     static Empresa empresa;
+    /**
+     * cria os objetos que realizam o caso de uso cadastrar empresa
+     * @throws Exception
+     */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		empresaDAO = new EmpresaDAO();
@@ -29,6 +33,7 @@ public class UC01CadastrarEmpresa {
 	 */
 	@Test
 	public void CT01UC01FBCadastra_empresa_com_sucesso() {
+		
 		empresaDAO.exclui("89424232000180");
 		assertEquals(1,empresaDAO.adiciona(empresa));
 		empresaDAO.exclui("89424232000180");
@@ -54,11 +59,26 @@ public class UC01CadastrarEmpresa {
 			assertEquals("CNPJ inválido!",e.getMessage());
 		}
 	}
+	/**
+	 * obj - verificar o comportamento do sistema no cadastro de uma empresa com dados invalidos
+	 */
+	@Test
+	public void CT04UC01A4Cadastra_empresa_com_dados_invalidos() {
+		Empresa empresa2 = new Empresa();
+		try {
+			empresa2.setNomeDaEmpresa("");
+			fail("deveria disparar uma exception");
+		} catch (Exception e) {
+			assertEquals("nome da empresa inválido!",e.getMessage());
+		}
+	}
+	/**
+	 * obj - exclui o cnpj ao finalizar o teste
+	 * @throws Exception
+	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		empresaDAO.exclui("89424232000180");
 	}
-
-	
-
 }
+

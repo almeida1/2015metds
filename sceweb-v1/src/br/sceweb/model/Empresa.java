@@ -88,7 +88,13 @@ public class Empresa {
 		return nomeDaEmpresa;
 	}
 	public void setNomeDaEmpresa(String nomeDaEmpresa) {
-		this.nomeDaEmpresa = nomeDaEmpresa;
+		if (nomeDaEmpresa.equals("")){
+			this.nomeDaEmpresa = nomeDaEmpresa;
+			throw new IllegalArgumentException("nome da empresa inválido!");
+		}
+		else
+			this.nomeDaEmpresa = nomeDaEmpresa;
+		
 	}
 	public String getNomeFantasia() {
 		return nomeFantasia;
