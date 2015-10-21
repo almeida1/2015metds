@@ -25,19 +25,17 @@ public class UC02ConsultarEmpresa {
 		empresa.setTelefone("2222");
 	}
 	/**
-	 * obj - verificar o comportamento do sistema na consulta de todas as empresas 
+	 * obj - verificar o comportamento do sistema na consulta de empresa com sucesso 
 	 */
 	@Test
 	public void CT01UC02FBCosultarEmpresa_com_sucesso() {
 		empresaDAO.adiciona(empresa);
-		assertEquals(1,empresaDAO.consultaEmpresas().size());
+		assertTrue(empresa.equals(empresaDAO.consultaEmpresas("89424232000180")));
 		empresaDAO.exclui("89424232000180");
 	}
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		empresaDAO.exclui("89424232000180");
 	}
-
-	
-
 }
+
