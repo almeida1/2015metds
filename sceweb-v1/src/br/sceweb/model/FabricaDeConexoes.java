@@ -8,7 +8,7 @@ public class FabricaDeConexoes {
 	public Connection getConnection() {
 		String url = "jdbc:mysql://localhost/sceweb";
 		try {
-			return DriverManager.getConnection(url, "root", "");
+			return DriverManager.getConnection(url, "root", "aluno");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
